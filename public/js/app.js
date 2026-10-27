@@ -87,9 +87,39 @@
   // ---- Scenario & complication ---------------------------------------------
   function fillNotes(view, id) {
     var n = notes[id] || {};
-    $$("textarea[data-note]", view).forEach(function (ta) {
+    $$("[data-note]", view).forEach(function (ta) {
       ta.value = n[ta.getAttribute("data-note")] || "";
     });
+    updateDownload(view);
+  }
+
+  // ---- Evidence download ---------------------------------------------------
+  // The download button unlocks once every box in that view is filled in.
+  function updateDownload(view) {
+    var btn = $("[data-download]", view);
+    if (!btn) return;
+    var empty = $$("textarea[data-note]", view).filter(function (ta) { return ta.value.trim() === ""; });
+    btn.disabled = empty.length > 0;
+    $("[data-download-hint]", view).textContent = empty.length
+      ? "Complete all the boxes to download your notes."
+      : "";
+  }
+
+  function downloadEvidence(btn) {
+    var s = findScenario(currentId);
+    var n = notes[currentId] || {};
+    var twist = btn.getAttribute("data-download") === "twist" ? unlocked[currentId] : null;
+    var hint = $("[data-download-hint]", btn.closest(".view"));
+    btn.disabled = true;
+    hint.textContent = "Creating your image…";
+    window.Evidence.download({
+      id: s.id, title: s.title, theme: s.theme,
+      names: (n.names || "").trim(), notes: n, twist: twist
+    }).then(function () {
+      hint.textContent = "Downloaded!";
+    }).catch(function () {
+      hint.textContent = "Sorry, the image could not be created. Please try again.";
+    }).finally(function () { btn.disabled = false; });
   }
 
   function renderScenario(s) {
@@ -172,10 +202,16 @@
 
   document.addEventListener("input", function (e) {
     var ta = e.target;
-    if (!ta.matches || !ta.matches("textarea[data-note]") || !currentId) return;
+    if (!ta.matches || !ta.matches("[data-note]") || !currentId) return;
     notes[currentId] = notes[currentId] || {};
     notes[currentId][ta.getAttribute("data-note")] = ta.value;
     saveNotes();
+    updateDownload(ta.closest(".view"));
+  });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-download]");
+    if (btn && !btn.disabled) downloadEvidence(btn);
   });
 
   $("#open-gate").addEventListener("click", function () {

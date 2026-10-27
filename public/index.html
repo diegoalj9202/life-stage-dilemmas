@@ -7,7 +7,7 @@
   <meta name="description" content="Speaking activity for adult English learners: life-stage dilemmas, habits and priorities.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -78,12 +78,18 @@
       <section class="panel notes" aria-labelledby="notes-heading">
         <h3 id="notes-heading">Our notes</h3>
         <p class="muted small">Your notes stay here while you visit other cards.</p>
+        <label for="note-names">Our names</label>
+        <input id="note-names" data-note="names" type="text" autocomplete="off">
         <label for="note-problem">1. The problem</label>
         <textarea id="note-problem" data-note="problem" rows="4"></textarea>
         <label for="note-solutions">2. Two possible solutions</label>
         <textarea id="note-solutions" data-note="solutions" rows="4"></textarea>
         <label for="note-decision">3. Our decision and why</label>
         <textarea id="note-decision" data-note="decision" rows="4"></textarea>
+        <div class="download-row">
+          <button type="button" class="btn btn-primary" data-download="scenario" disabled>⬇ Download our notes (PNG)</button>
+          <p class="muted small" data-download-hint role="status" aria-live="polite"></p>
+        </div>
       </section>
 
       <section class="panel twist-gate" aria-labelledby="gate-heading">
@@ -158,6 +164,10 @@
         <textarea id="note-rethink" data-note="rethink" rows="4"></textarea>
         <label for="note-final">Our final decision and why</label>
         <textarea id="note-final" data-note="final" rows="4"></textarea>
+        <div class="download-row">
+          <button type="button" class="btn btn-primary" data-download="twist" disabled>⬇ Download all our notes (PNG)</button>
+          <p class="muted small" data-download-hint role="status" aria-live="polite"></p>
+        </div>
       </section>
 
       <nav class="toolbar toolbar-bottom" aria-label="Complication navigation">
@@ -172,6 +182,7 @@
   </footer>
 
   <script src="js/scenarios.js"></script>
+  <script src="js/evidence.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
