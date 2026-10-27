@@ -105,8 +105,9 @@
   function renderTwist(s, data) {
     var view = $("#view-twist");
     bind(view, "num", s.id);
-    bind(view, "twistTitle", data.title);
+    bind(view, "twistTitle", s.title);
     bind(view, "twistText", data.text);
+    bind(view, "challenge", data.challenge);
     fillNotes(view, String(s.id));
   }
 
