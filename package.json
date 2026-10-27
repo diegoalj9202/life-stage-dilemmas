@@ -1,0 +1,12 @@
+{
+  "name": "life-stage-dilemmas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Life-Stage Dilemmas: What Would You Do? — speaking activity for adult English learners.",
+  "scripts": {
+    "dev": "node dev-server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

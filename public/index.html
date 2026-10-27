@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Life-Stage Dilemmas: What Would You Do?</title>
+  <meta name="description" content="Speaking activity for adult English learners: life-stage dilemmas, habits and priorities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">Changing habits · Life stages · Priorities</p>
+      <h1 class="site-title"><a href="#/" data-nav="home">Life-Stage Dilemmas</a></h1>
+      <p class="site-subtitle">What would you do?</p>
+    </div>
+  </header>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <!-- HOME -->
+    <section id="view-home" class="view" aria-labelledby="home-heading">
+      <h2 id="home-heading" class="sr-only">Mystery cards</h2>
+      <p class="lead">Open one mystery card with your partner. Read the story, talk about it, and decide together what the person should do.</p>
+      <div id="card-grid" class="card-grid"></div>
+    </section>
+
+    <!-- SCENARIO -->
+    <section id="view-scenario" class="view" hidden aria-labelledby="scenario-title">
+      <nav class="toolbar" aria-label="Scenario navigation">
+        <button type="button" class="btn btn-ghost" data-nav="home">&larr; Back to Mystery Cards</button>
+      </nav>
+
+      <article class="panel story">
+        <p class="card-tag"><span class="card-num" data-bind="num"></span><span data-bind="theme"></span></p>
+        <h2 id="scenario-title" data-bind="title"></h2>
+        <div class="narrative" data-bind="narrative"></div>
+      </article>
+
+      <section class="panel" aria-labelledby="tasks-heading">
+        <h3 id="tasks-heading">Your tasks</h3>
+        <ol class="steps">
+          <li><strong>Understand:</strong> Identify the person's previous habits, current circumstances, and main difficulty.</li>
+          <li><strong>Discuss:</strong> Suggest two realistic solutions.</li>
+          <li><strong>Decide:</strong> Agree on the best solution and justify your decision.</li>
+          <li><strong>Prepare:</strong> Organize a short oral explanation to present to your classmates.</li>
+        </ol>
+      </section>
+
+      <details class="panel support">
+        <summary><span>Speaking Support</span><span class="summary-hint">useful expressions</span></summary>
+        <div class="support-groups">
+          <div>
+            <h4>Talking about the past and change</h4>
+            <ul class="phrases">
+              <li>They used to…</li>
+              <li>They weren't used to…</li>
+              <li>They are getting used to…</li>
+              <li>When they were younger, they would…</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Suggesting and deciding</h4>
+            <ul class="phrases">
+              <li>One possible solution could be…</li>
+              <li>We believe… because…</li>
+              <li>On the other hand…</li>
+              <li>If we were in this situation, we would…</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <section class="panel notes" aria-labelledby="notes-heading">
+        <h3 id="notes-heading">Our notes</h3>
+        <p class="muted small">Your notes stay here while you visit other cards.</p>
+        <label for="note-problem">1. The problem</label>
+        <textarea id="note-problem" data-note="problem" rows="4"></textarea>
+        <label for="note-solutions">2. Two possible solutions</label>
+        <textarea id="note-solutions" data-note="solutions" rows="4"></textarea>
+        <label for="note-decision">3. Our decision and why</label>
+        <textarea id="note-decision" data-note="decision" rows="4"></textarea>
+      </section>
+
+      <section class="panel twist-gate" aria-labelledby="gate-heading">
+        <h3 id="gate-heading">Advice Exchange</h3>
+        <p>Ready? Your teacher will unlock an unexpected complication for this story.</p>
+        <button type="button" class="btn btn-accent" id="open-gate">⚡ Unexpected Complication</button>
+        <form id="gate-form" class="gate-form" hidden autocomplete="off">
+          <label for="passcode">Teacher passcode</label>
+          <div class="gate-row">
+            <input id="passcode" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+            <button type="submit" class="btn btn-primary">Unlock</button>
+          </div>
+          <p class="gate-msg" id="gate-msg" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <nav class="toolbar toolbar-bottom" aria-label="Scenario navigation">
+        <button type="button" class="btn btn-ghost" data-nav="home">&larr; Back to Mystery Cards</button>
+      </nav>
+    </section>
+
+    <!-- COMPLICATION -->
+    <section id="view-twist" class="view" hidden aria-labelledby="twist-title">
+      <nav class="toolbar" aria-label="Complication navigation">
+        <button type="button" class="btn btn-ghost" data-nav="scenario">&larr; Return to Scenario</button>
+        <button type="button" class="btn btn-ghost" data-nav="home">Back to Mystery Cards</button>
+      </nav>
+
+      <article class="panel twist">
+        <p class="card-tag"><span class="card-num" data-bind="num"></span>Unexpected Complication</p>
+        <h2 id="twist-title" data-bind="twistTitle"></h2>
+        <div class="narrative" data-bind="twistText"></div>
+      </article>
+
+      <section class="panel" aria-labelledby="twist-tasks-heading">
+        <h3 id="twist-tasks-heading">Think again</h3>
+        <ol class="steps">
+          <li><strong>Reconsider:</strong> Does your original recommendation still work? Why or why not?</li>
+          <li><strong>Negotiate:</strong> Discuss an alternative with your partner and agree on a new plan.</li>
+          <li><strong>Justify:</strong> Explain your final decision to your classmates.</li>
+        </ol>
+      </section>
+
+      <details class="panel support">
+        <summary><span>Speaking Support</span><span class="summary-hint">useful expressions</span></summary>
+        <div class="support-groups">
+          <div>
+            <h4>Changing your mind</h4>
+            <ul class="phrases">
+              <li>At first we thought… but now…</li>
+              <li>Our first idea doesn't work anymore because…</li>
+              <li>We still believe… because…</li>
+              <li>They will have to get used to…</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Negotiating</h4>
+            <ul class="phrases">
+              <li>What if they…?</li>
+              <li>I see your point, but…</li>
+              <li>On the other hand…</li>
+              <li>If we were in this situation, we would…</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <section class="panel notes" aria-labelledby="twist-notes-heading">
+        <h3 id="twist-notes-heading">Our new decision</h3>
+        <label for="note-rethink">What changes now?</label>
+        <textarea id="note-rethink" data-note="rethink" rows="4"></textarea>
+        <label for="note-final">Our final decision and why</label>
+        <textarea id="note-final" data-note="final" rows="4"></textarea>
+      </section>
+
+      <nav class="toolbar toolbar-bottom" aria-label="Complication navigation">
+        <button type="button" class="btn btn-ghost" data-nav="scenario">&larr; Return to Scenario</button>
+        <button type="button" class="btn btn-ghost" data-nav="home">Back to Mystery Cards</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>No accounts needed. Notes are saved only on this device until you close the tab.</p>
+  </footer>
+
+  <script src="js/scenarios.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
