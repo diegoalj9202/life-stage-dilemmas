@@ -156,7 +156,7 @@ main { padding-bottom: 32px; outline: none; }
 .steps li { margin-bottom: .5em; }
 .steps li::marker { font-weight: 700; color: var(--primary); }
 
-/* Story tools: Listen and Highlight grammar */
+/* Story tools: Highlight grammar */
 .story-tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 16px; }
 .chip {
   display: inline-flex; align-items: center; gap: 6px;

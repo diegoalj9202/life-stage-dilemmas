@@ -95,40 +95,6 @@
     if (s) renderNarrative($('[data-bind="narrative"]', view), s);
   }
 
-  // ---- Listen (text to speech) ---------------------------------------------
-  var canSpeak = "speechSynthesis" in window;
-
-  function stopSpeaking() {
-    if (canSpeak) window.speechSynthesis.cancel();
-    $$("[data-listen]").forEach(function (b) {
-      b.setAttribute("aria-pressed", "false");
-      $("span", b).textContent = "Listen";
-    });
-  }
-
-  function speak(btn, text) {
-    if (btn.getAttribute("aria-pressed") === "true") return stopSpeaking();
-    stopSpeaking();
-    var u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-US";
-    u.rate = 0.9;
-    var voice = window.speechSynthesis.getVoices().find(function (v) { return /^en(-|_)US/i.test(v.lang); });
-    if (voice) u.voice = voice;
-    u.onend = u.onerror = stopSpeaking;
-    btn.setAttribute("aria-pressed", "true");
-    $("span", btn).textContent = "Stop";
-    window.speechSynthesis.speak(u);
-  }
-
-  function listenText(view) {
-    var s = findScenario(currentId);
-    if (view.id === "view-twist") {
-      var t = unlocked[currentId];
-      return t.text.join(" ") + " Challenge: " + t.challenge;
-    }
-    return s.title + ". " + s.narrative.join(" ");
-  }
-
   // ---- Practice timer ------------------------------------------------------
   var TIMER_SECONDS = 120;
   var timer = { left: TIMER_SECONDS, id: null };
@@ -344,7 +310,6 @@
     var m = hash.match(/^#\/card\/(\d+)(\/complication)?$/);
     var s = m && findScenario(m[1]);
 
-    stopSpeaking();
     pauseTimer();
     lastNote = null;
 
@@ -383,8 +348,6 @@
       if (target === "scenario" && currentId) location.hash = "#/card/" + currentId;
     } else if ((el = e.target.closest("[data-download]"))) {
       if (!el.disabled) downloadEvidence(el);
-    } else if ((el = e.target.closest("[data-listen]"))) {
-      speak(el, listenText(el.closest(".view")));
     } else if ((el = e.target.closest("[data-highlight]"))) {
       setHighlight(!highlightOn);
     } else if ((el = e.target.closest(".step-tab"))) {
@@ -473,9 +436,6 @@
       })
       .finally(function () { submit.disabled = false; });
   });
-
-  if (!canSpeak) $$("[data-listen]").forEach(function (b) { b.hidden = true; });
-  if (canSpeak) window.speechSynthesis.getVoices(); // starts loading voices early
 
   window.addEventListener("hashchange", route);
   route();
