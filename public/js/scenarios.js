@@ -5,6 +5,8 @@
  *   id        card number (1–6, keep as is)
  *   title     short title shown when the card is opened
  *   theme     small label above the title (person and topic)
+ *   grammar   target forms highlighted by "Highlight grammar" (exact text from the story);
+ *             type: "used" (used to), "would" (past habit), "be" (be used to), "get" (get used to)
  *   narrative array of paragraphs
  *
  * The UNEXPECTED COMPLICATIONS are NOT in this file. They live on the server
@@ -15,6 +17,11 @@ window.SCENARIOS = [
     id: 1,
     title: "A New Job, a Different Life",
     theme: "Mariana, 29 · Career and Work-Life Balance",
+    grammar: [
+      { text: "used to wake up", type: "used" },
+      { text: "was used to having a flexible schedule", type: "be" },
+      { text: "isn't used to this demanding routine", type: "be" }
+    ],
     narrative: [
       "Mariana is 29 years old and lives in Medellín. For three years, she worked remotely for a small company. She used to wake up at 7:30 a.m., prepare breakfast slowly, and exercise before starting work. She was used to having a flexible schedule, and she enjoyed spending time with her family in the evenings.",
       "Three months ago, Mariana accepted a new position at a larger company. The salary is much better, and she has more opportunities for professional growth. However, she now has to travel to the office five days a week. She wakes up at 5:00 a.m. and spends almost two hours traveling every day.",
@@ -27,6 +34,11 @@ window.SCENARIOS = [
     id: 2,
     title: "Starting Over in Another Country",
     theme: "Andrés, 34 · Migration and Independence",
+    grammar: [
+      { text: "used to have lunch", type: "used" },
+      { text: "would meet his childhood friends", type: "would" },
+      { text: "isn't used to the cold weather", type: "be" }
+    ],
     narrative: [
       "Andrés is 34 years old and recently moved from Colombia to Canada. Before moving, he lived close to his parents and worked as an engineer. He used to have lunch with his family every Sunday, and he would meet his childhood friends after work. He was comfortable with his daily routine and rarely worried about feeling lonely.",
       "Six months ago, Andrés decided to move abroad because he wanted better professional opportunities and a different lifestyle. However, adapting to his new environment has been more difficult than he expected.",
@@ -40,6 +52,12 @@ window.SCENARIOS = [
     id: 3,
     title: "When Family Changes Everything",
     theme: "Valentina, 31 · Parenthood and Personal Identity",
+    grammar: [
+      { text: "used to attend dance classes", type: "used" },
+      { text: "would travel", type: "would" },
+      { text: "was used to organizing", type: "be" },
+      { text: "isn't used to having", type: "be" }
+    ],
     narrative: [
       "Valentina is 31 years old and became a mother eight months ago. Before having her baby, she worked as a graphic designer and enjoyed an active social life. She used to attend dance classes twice a week, and she would travel with her partner whenever they had a long weekend.",
       "Valentina loved her independence. She was used to organizing her own schedule and making spontaneous plans with friends. However, her priorities changed significantly after her daughter was born.",
@@ -53,6 +71,10 @@ window.SCENARIOS = [
     id: 4,
     title: "Freedom or Financial Stability?",
     theme: "Santiago, 25 · Independence and Financial Priorities",
+    grammar: [
+      { text: "used to spend", type: "used" },
+      { text: "is now used to following", type: "be" }
+    ],
     narrative: [
       "Santiago is 25 years old and has been working as a software developer for two years. He currently lives with his parents in Medellín. During university, he used to spend most of his money on entertainment, clothes, and weekend trips. He rarely thought about saving because his parents covered many of his expenses.",
       "Since starting his professional career, Santiago has become more responsible with money. He is now used to following a monthly budget, and he saves part of his salary regularly.",
@@ -66,6 +88,12 @@ window.SCENARIOS = [
     id: 5,
     title: "Too Old to Start Again?",
     theme: "Claudia, 48 · Education and Changing Expectations",
+    grammar: [
+      { text: "used to dream", type: "used" },
+      { text: "would leave home early", type: "would" },
+      { text: "was used to putting", type: "be" },
+      { text: "isn't used to digital learning platforms", type: "be" }
+    ],
     narrative: [
       "Claudia is 48 years old and has worked as an administrative assistant for more than twenty years. When she was younger, she used to dream about studying psychology, but her family needed financial support, so she started working immediately after finishing school.",
       "For many years, Claudia followed a predictable routine. She would leave home early, spend the day at the office, and return home to take care of her children. She was used to putting her family's needs before her personal ambitions.",
@@ -79,6 +107,11 @@ window.SCENARIOS = [
     id: 6,
     title: "A Healthy Life, but at What Cost?",
     theme: "Ricardo, 38 · Health, Friendships, and Lifestyle Changes",
+    grammar: [
+      { text: "used to eat fast food", type: "used" },
+      { text: "would stay out late", type: "would" },
+      { text: "is used to following", type: "be" }
+    ],
     narrative: [
       "Ricardo is 38 years old and works in marketing. A year ago, he decided to change his lifestyle after noticing that he was constantly tired and had little energy.",
       "Before making these changes, Ricardo used to eat fast food several times a week, and he would stay out late with friends on Fridays and Saturdays. He rarely exercised because he believed his work schedule was too demanding.",
