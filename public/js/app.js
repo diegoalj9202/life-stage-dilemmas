@@ -213,6 +213,7 @@
         var badge = document.createElement("span");
         badge.className = "mc-badge";
         badge.textContent = unlocked[s.id] ? "Complication opened" : "Notes saved";
+        badge.setAttribute("data-short", unlocked[s.id] ? "⚡" : "✓");   // shown on small phones
         a.appendChild(badge);
       }
       grid.appendChild(a);
