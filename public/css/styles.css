@@ -255,17 +255,43 @@ mark.g, .legend .g { color: var(--ink); border-radius: 6px; padding: 1px 4px; fo
 
 /* Speaking support */
 .support { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
-.support summary {
+.support > summary {
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px;
   cursor: pointer; list-style: none;
   font-family: var(--font-title); font-size: 1.2rem; font-weight: 700;
 }
 .support summary::-webkit-details-marker { display: none; }
-.support summary::after { content: "+"; font-family: inherit; font-size: 1.5rem; line-height: 1; color: var(--primary); margin-left: auto; }
-.support[open] summary::after { content: "–"; }
+.support > summary::after { content: "+"; font-family: inherit; font-size: 1.5rem; line-height: 1; color: var(--primary); margin-left: auto; }
+.support[open] > summary::after { content: "–"; }
 .summary-hint { font-family: var(--font-body); font-size: .85rem; font-weight: 400; color: var(--muted); }
-.support-groups { display: grid; gap: 16px; margin-top: 16px; }
-@media (min-width: 640px) { .support-groups { grid-template-columns: 1fr 1fr; } }
+
+/* One collapsible group per language function */
+.phrase-groups { display: grid; gap: 10px; margin-top: 16px; }
+.pg { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
+.pg[open] { border-color: var(--accent); }
+.pg > summary {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px;
+  padding: 10px 14px; min-height: 48px; cursor: pointer; list-style: none;
+}
+.pg > summary::after {
+  content: "▾"; margin-left: auto; color: var(--accent); font-size: 1.1rem; line-height: 1;
+  transition: transform .15s ease;
+}
+.pg[open] > summary::after { transform: rotate(180deg); }
+.pg-num {
+  display: inline-grid; place-items: center; width: 26px; height: 26px; flex: none;
+  border-radius: 8px; background: var(--accent-soft); color: var(--accent);
+  font: 800 .9rem/1 var(--font-title);
+}
+.pg-title { font: 700 1.05rem/1.25 var(--font-title); }
+.pg-rule {
+  font: 500 .78rem/1.2 ui-monospace, "Cascadia Code", Consolas, monospace; color: var(--accent);
+  padding: 3px 8px; border: 1px solid var(--accent); border-radius: 6px; background: var(--surface);
+}
+.pg-tip { margin: 0 14px 10px; font-size: .9rem; color: var(--muted); }
+.pg .phrases { padding: 0 14px 14px; }
+@media (min-width: 640px) { .pg .phrases { grid-template-columns: 1fr 1fr; } }
+.pg-note { margin: 12px 0 0; }
 .phrases { display: grid; gap: 8px; }
 .phrase {
   text-align: left; min-height: 44px; padding: 8px 12px;
