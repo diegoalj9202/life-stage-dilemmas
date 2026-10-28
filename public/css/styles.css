@@ -114,7 +114,15 @@ main { padding-bottom: 32px; outline: none; }
 .mystery-card:nth-child(even) { --card-a: #8a3b1c; --card-b: #c25a2a; }
 .mystery-card:hover { transform: translateY(-4px) rotate(-1deg); }
 .mc-label { font-size: clamp(.62rem, 2.4vw, .8rem); letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
-.mc-num { font-family: var(--font-title); font-weight: 800; font-size: clamp(3.5rem, 12vw, 5rem); line-height: 1; align-self: flex-end; }
+.mc-label { position: relative; z-index: 1; }
+.mc-num {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding-top: .12em;   /* Baloo 2 digits sit high; nudge to the optical centre */
+  font-family: var(--font-title); font-weight: 800; line-height: 1;
+  font-size: clamp(4.5rem, 17vw, 7.5rem);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, .18);
+}
 .mc-badge {
   position: absolute; left: 12px; bottom: 12px;
   font-size: .72rem; font-weight: 700;
