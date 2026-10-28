@@ -15,19 +15,19 @@
 window.SCENARIOS = [
   {
     id: 1,
-    title: "A New Job, a Different Life",
-    theme: "Mariana, 29 · Career and Work-Life Balance",
+    title: "The Family Business or a Personal Dream?",
+    theme: "Daniel, 32 · Family Expectations, Career Decisions, and Independence",
     grammar: [
-      { text: "used to wake up", type: "used" },
-      { text: "was used to having a flexible schedule", type: "be" },
-      { text: "isn't used to this demanding routine", type: "be" }
+      { text: "used to help his parents", type: "used" },
+      { text: "would prepare traditional Colombian dishes", type: "would" },
+      { text: "is used to working long hours", type: "be" }
     ],
     narrative: [
-      "Mariana is 29 years old and lives in Medellín. For three years, she worked remotely for a small company. She used to wake up at 7:30 a.m., prepare breakfast slowly, and exercise before starting work. She was used to having a flexible schedule, and she enjoyed spending time with her family in the evenings.",
-      "Three months ago, Mariana accepted a new position at a larger company. The salary is much better, and she has more opportunities for professional growth. However, she now has to travel to the office five days a week. She wakes up at 5:00 a.m. and spends almost two hours traveling every day.",
-      "Mariana isn't used to this demanding routine. She often arrives home exhausted, and she has stopped exercising. Her friends have noticed that she rarely goes out anymore. Although she enjoys her new responsibilities, she sometimes misses her previous lifestyle.",
-      "Recently, her manager offered her the opportunity to lead an important project. Accepting it could help her career, but it would also mean working longer hours for the next six months.",
-      "Mariana wants to be successful, but she is beginning to question whether professional growth is worth sacrificing her personal well-being."
+      "Daniel is 32 years old and lives in Medellín. For the past eight years, he has worked in his family's restaurant. When he was younger, he used to help his parents on weekends, and they would prepare traditional Colombian dishes together. Over time, he became responsible for managing the restaurant's employees and finances.",
+      "Daniel is used to working long hours, dealing with customers, and making important decisions. His parents are proud of him because they believe he will eventually take over the family business.",
+      "However, Daniel has always been interested in photography. Two years ago, he started taking photography courses in his free time. Recently, a travel company offered him a position as a photographer. The job would allow him to visit different places in Colombia and develop his creative skills.",
+      "Unfortunately, the position offers a lower salary than his current job, and Daniel would have to travel frequently. His parents are disappointed because they were expecting him to continue managing the restaurant.",
+      "Daniel feels grateful for everything his family has done for him, but he also wants to build his own professional identity. He must decide whether to continue working in the family business or take a risk and follow his personal dream."
     ]
   },
   {

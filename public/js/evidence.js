@@ -79,9 +79,9 @@
     });
   }
 
-  // Largest text size (≤ 36px) at which every box's text fits.
-  function fit(ctx, boxes) {
-    for (var size = 36; size >= 11; size--) {
+  // Largest text size (≤ max, default 36px) at which every box's text fits.
+  function fit(ctx, boxes, max) {
+    for (var size = max || 36; size >= 11; size--) {
       var ok = boxes.every(function (b) {
         ctx.font = (b.tint ? "600 " : "400 ") + size + "px " + BODY;
         b.lines = wrap(ctx, b.text, b.w - 56);
@@ -174,8 +174,14 @@
       add(row, 1, "Does their solution still work?", data.notes.rethink);
       add(row, 2, "Our new recommendation and why", data.notes.final);
     }
-    var size = fit(ctx, boxes);
-    boxes.forEach(function (b) { drawBox(ctx, b, size); });
+    // The complication box is sized on its own so a long complication
+    // doesn't shrink the students' own writing.
+    var noteBoxes = boxes.filter(function (b) { return !b.tint; });
+    var tintBoxes = boxes.filter(function (b) { return b.tint; });
+    var size = fit(ctx, noteBoxes);
+    var tintSize = tintBoxes.length ? fit(ctx, tintBoxes, size) : size;
+    noteBoxes.forEach(function (b) { drawBox(ctx, b, size); });
+    tintBoxes.forEach(function (b) { drawBox(ctx, b, tintSize); });
 
     // Footer
     ctx.fillStyle = C.muted;
