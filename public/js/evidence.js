@@ -146,7 +146,12 @@
 
     // Note boxes
     var top = 236, bottom = H - 76, gap = 28;
-    var rows = data.twist ? 2 : 1;
+    // The pair that challenges a card usually has no notes for its first part.
+    var ownNotes = ["problem", "solutions", "decision"].some(function (k) {
+      return (data.notes[k] || "").trim() !== "";
+    });
+    var showOwn = !data.twist || ownNotes;
+    var rows = data.twist && showOwn ? 2 : 1;
     var rowH = (bottom - top - gap * (rows - 1)) / rows;
     var colW = (W - 2 * M - gap * 2) / 3;
     var boxes = [];
@@ -156,13 +161,18 @@
         w: colW, h: rowH, label: label, text: text || "", tint: tint
       });
     }
-    add(0, 0, "1. The problem", data.notes.problem);
-    add(0, 1, "2. Two possible solutions", data.notes.solutions);
-    add(0, 2, "3. Our decision and why", data.notes.decision);
+    if (showOwn) {
+      add(0, 0, "1. The problem", data.notes.problem);
+      add(0, 1, "2. Two possible solutions", data.notes.solutions);
+      add(0, 2, "3. Our decision and why", data.notes.decision);
+    }
     if (data.twist) {
-      add(1, 0, "⚡ Unexpected Complication", "Challenge: " + data.twist.challenge, true);
-      add(1, 1, "What changes now?", data.notes.rethink);
-      add(1, 2, "Our final decision and why", data.notes.final);
+      var row = showOwn ? 1 : 0;
+      add(row, 0, "⚡ Unexpected Complication",
+        showOwn ? "Challenge: " + data.twist.challenge
+                : data.twist.text.join("\n") + "\n\nChallenge: " + data.twist.challenge, true);
+      add(row, 1, "Does their solution still work?", data.notes.rethink);
+      add(row, 2, "Our new recommendation and why", data.notes.final);
     }
     var size = fit(ctx, boxes);
     boxes.forEach(function (b) { drawBox(ctx, b, size); });
