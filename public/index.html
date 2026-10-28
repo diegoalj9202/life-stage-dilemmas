@@ -51,6 +51,7 @@
 
       <section class="panel tasks" aria-labelledby="tasks-heading">
         <h3 id="tasks-heading">Your tasks</h3>
+        <p class="muted small save-note">✓ Your notes save automatically.</p>
         <div class="stepper" role="tablist" aria-label="Task steps">
           <button type="button" role="tab" class="step-tab" data-step="1" aria-controls="step-1"><span class="step-dot">1</span><span class="step-name">Understand</span></button>
           <button type="button" role="tab" class="step-tab" data-step="2" aria-controls="step-2"><span class="step-dot">2</span><span class="step-name">Discuss</span></button>
@@ -206,7 +207,8 @@
   </main>
 
   <footer class="site-footer wrap">
-    <p>No accounts needed. Notes are saved only on this device until you close the tab.</p>
+    <p>No accounts needed. Your notes save automatically on this device, even if you close the tab, and are deleted after 12 hours.
+      <button type="button" class="link-btn" data-clear-all>Clear all notes</button></p>
   </footer>
 
   <script src="js/scenarios.js"></script>

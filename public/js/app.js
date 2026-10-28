@@ -1,30 +1,50 @@
 (function () {
   "use strict";
 
-  var NOTES_KEY = "lsd-notes-v1";
+  var SAVE_KEY = "lsd-autosave-v1";
+  var KEEP_FOR_MS = 12 * 60 * 60 * 1000;   // autosave is kept 12 hours after the last change
   var STEP_NOTES = { 1: "problem", 2: "solutions", 3: "decision" };
   var scenarios = window.SCENARIOS || [];
 
-  // ---- State (kept for this browser tab only) -----------------------------
-  var notes = loadNotes();      // { "1": { problem: "...", ... }, ... }
-  var unlocked = {};            // { "1": { text, challenge } } — in memory only
+  // ---- State (autosaved on this device, so closing the tab loses nothing) --
+  var saved = loadSaved();
+  var notes = saved.notes;      // { "1": { problem: "...", ... }, ... }
+  var unlocked = saved.unlocked; // { "1": { text, challenge } }
   var steps = {};               // { "1": 2 } — open task step per card
   var highlightOn = false;
   var currentId = null;
   var lastNote = null;          // last note box the students typed in
 
-  function loadNotes() {
+  function loadSaved() {
+    var empty = { notes: {}, unlocked: {} };
     try {
-      return JSON.parse(sessionStorage.getItem(NOTES_KEY)) || {};
+      var data = JSON.parse(localStorage.getItem(SAVE_KEY));
+      if (!data || Date.now() - data.savedAt > KEEP_FOR_MS) {
+        localStorage.removeItem(SAVE_KEY);
+        return empty;
+      }
+      return { notes: data.notes || {}, unlocked: data.unlocked || {} };
     } catch (e) {
-      return {};
+      return empty;
     }
   }
 
   function saveNotes() {
     try {
-      sessionStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+      localStorage.setItem(SAVE_KEY, JSON.stringify({
+        savedAt: Date.now(), notes: notes, unlocked: unlocked
+      }));
     } catch (e) { /* storage unavailable: notes still live in memory */ }
+  }
+
+  function clearAll() {
+    if (!window.confirm("Delete all notes on this device? This cannot be undone.")) return;
+    notes = {};
+    unlocked = {};
+    steps = {};
+    try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* nothing saved */ }
+    if (location.hash === "#/" || !location.hash) route();
+    else location.hash = "#/";
   }
 
   function hasNotes(id) {
@@ -363,6 +383,8 @@
       toggleTimer();
     } else if (e.target.closest("[data-timer-reset]")) {
       resetTimer();
+    } else if (e.target.closest("[data-clear-all]")) {
+      clearAll();
     }
   });
 
@@ -425,6 +447,7 @@
       })
       .then(function (data) {
         unlocked[id] = data;
+        saveNotes();
         input.value = "";
         location.hash = "#/card/" + id + "/complication";
       })
